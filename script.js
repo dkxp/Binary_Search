@@ -31,6 +31,17 @@ const buildTree = function (array, start, end) {
   return root;
 };
 
+const insert = function (value, root) {
+  if (root === null) {
+    root = new Node(value);
+    return root;
+  }
+  if (value < root.data) root.left = insert(value, root.left);
+  else root.right = insert(value, root.right);
+
+  return root;
+};
+
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
     return;
@@ -48,3 +59,5 @@ const data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 
 const tree = new Tree(data);
 prettyPrint(tree.root);
+
+prettyPrint(insert(999999, tree.root));
